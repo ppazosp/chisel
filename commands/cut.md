@@ -80,7 +80,7 @@ Shape a design system from scratch. Detect context, establish aesthetic directio
    - Use `ToolSearch` with query `"stitch"` to check if Stitch MCP tools are available
    - If tools like `mcp__stitch__generate_screen_from_text`, `mcp__stitch__create_project`, etc. are found → Stitch IS available
    - If no stitch tools found → **recommend it:**
-     > "Stitch MCP isn't connected. It generates visual mockups from text — highly recommended for better design quality. Install it at https://stitch.withseam.com and add it to your MCP config, then re-run `/chisel cut`."
+     > "Stitch MCP isn't connected. It generates visual mockups from text — highly recommended for better design quality. Install it at https://stitch.withgoogle.com/docs/mcp/setup and add it to your MCP config, then re-run `/chisel cut`."
      >
      > Then proceed to step 5 (don't block on it).
 

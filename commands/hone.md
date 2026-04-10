@@ -48,7 +48,7 @@ Change design tokens, preview the impact in the showcase, and propagate approved
 
 3. **If stylistic — check for Stitch MCP (after research):**
    - Use `ToolSearch` with query `"stitch"` to check if Stitch MCP tools are available
-   - If not available: recommend installing it — "Stitch MCP generates visual mockups from text — highly recommended for better design quality. Install at https://stitch.withseam.com"
+   - If not available: recommend installing it — "Stitch MCP generates visual mockups from text — highly recommended for better design quality. Install at https://stitch.withgoogle.com/docs/mcp/setup"
    - If available, offer: "Want me to generate mockups with the new direction in Stitch? This significantly improves design quality."
    - If user says yes:
      - Load Stitch tool schemas via ToolSearch

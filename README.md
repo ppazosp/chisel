@@ -65,7 +65,7 @@ Clone into your project and point your agent's instruction file (`AGENTS.md`, `.
 
 ### Recommended: Stitch MCP
 
-[Stitch](https://stitch.withseam.com) generates visual mockups from text descriptions. When connected, `/chisel cut` and `/chisel hone` use it to brainstorm layouts visually before generating tokens — significantly improving design quality.
+[Stitch](https://stitch.withgoogle.com/docs/mcp/setup) generates visual mockups from text descriptions. When connected, `/chisel cut` and `/chisel hone` use it to brainstorm layouts visually before generating tokens — significantly improving design quality.
 
 Install it and add to your MCP config. Chisel will detect it automatically and recommend it if missing.
 

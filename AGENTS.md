@@ -52,7 +52,7 @@ Start a new design system from scratch. Detect context, establish aesthetic dire
    If ambiguous: ask the user (Minimal, Bold, Playful, Industrial, Editorial, Luxury, or "surprise me").
 2. If "surprise me": pick based on the table above
 3. **Research the vibe online (ALWAYS)** — search for `"<vibe> UI design"`, `"<vibe> design system examples"`, extract concrete design decisions (fonts, color ranges, radius, shadows)
-4. Check for Stitch MCP. If available: offer visual brainstorming (significantly improves design quality). If not available: recommend installing it at https://stitch.withseam.com — don't block, proceed.
+4. Check for Stitch MCP. If available: offer visual brainstorming (significantly improves design quality). If not available: recommend installing it at https://stitch.withgoogle.com/docs/mcp/setup — don't block, proceed.
 5. Confirm direction with user before proceeding
 
 ## Phase 2: Component Detection
