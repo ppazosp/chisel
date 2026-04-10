@@ -1,25 +1,25 @@
 ---
-name: stencil
-description: Design system stencil for frontend interfaces. Use when building UI components, starting a new frontend project, reviewing design consistency, tweaking design tokens, generating component showcases, or any visual/design system work. Triggers on "design system", "component showcase", "design tokens", "refine design", "audit design", "UI consistency", "start a frontend project", "change the palette", "update the design", /stencil, /cut, /trace, /lay, /trim, /check, "build page", "build component".
+name: chisel
+description: Design system chisel for frontend interfaces. Use when building UI components, starting a new frontend project, reviewing design consistency, tweaking design tokens, generating component showcases, or any visual/design system work. Triggers on "design system", "component showcase", "design tokens", "refine design", "audit design", "UI consistency", "start a frontend project", "change the palette", "update the design", /chisel, /cut, /trace, /lay, /trim, /check, "build page", "build component".
 license: MIT
 metadata:
   author: ppazosp
   version: "1.0.0"
 ---
 
-# Stencil
+# Chisel
 
-Design system stencil for frontend interfaces. Cut the pattern, trace it onto pages, lay it out, trim the edges, check the work.
+Design system chisel for frontend interfaces. Cut the pattern, trace it onto pages, lay it out, trim the edges, check the work.
 
 ## Commands
 
 | Command | What it does |
 |---------|-------------|
-| `/stencil cut` | Cut the stencil — detect context → aesthetic direction → [optional Stitch] → generate `system.md` + `tokens.css` + `showcase.html` → iterate |
-| `/stencil trace` | Trace the pattern — build frontend pages using the design system, component by component |
-| `/stencil lay` | Lay it out — regenerate component showcase from current `system.md` |
-| `/stencil trim` | Trim the edges — describe change → update tokens → preview → approve → propagate |
-| `/stencil check` | Hold it against the work — audit all frontend code against `system.md` → report → auto-fix |
+| `/chisel cut` | Cut the chisel — detect context → aesthetic direction → [optional Stitch] → generate `system.md` + `tokens.css` + `showcase.html` → iterate |
+| `/chisel trace` | Trace the pattern — build frontend pages using the design system, component by component |
+| `/chisel lay` | Lay it out — regenerate component showcase from current `system.md` |
+| `/chisel trim` | Trim the edges — describe change → update tokens → preview → approve → propagate |
+| `/chisel check` | Hold it against the work — audit all frontend code against `system.md` → report → auto-fix |
 
 ## Always-On Skill
 
@@ -45,9 +45,9 @@ docs/design/
 ## Workflow
 
 ```
-/stencil cut   → cut the pattern → tokens → showcase → iterate
-/stencil trace → trace the pattern → build pages component by component
-/stencil lay   → lay out components from current system.md
-/stencil trim  → trim the edges → preview → approve → propagate
-/stencil check → hold against the work → report → auto-fix
+/chisel cut   → cut the pattern → tokens → showcase → iterate
+/chisel trace → trace the pattern → build pages component by component
+/chisel lay   → lay out components from current system.md
+/chisel trim  → trim the edges → preview → approve → propagate
+/chisel check → hold against the work → report → auto-fix
 ```

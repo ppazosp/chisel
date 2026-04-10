@@ -15,7 +15,7 @@ Regenerate the component showcase HTML from the current `system.md` tokens and c
 **Actions:**
 
 1. **Check for `docs/design/system.md`:**
-   - If missing: STOP — "No design system found. Run `/stencil cut` first."
+   - If missing: STOP — "No design system found. Run `/chisel cut` first."
 
 2. **Read `docs/design/system.md`:**
    - Parse all token values (colors, typography, spacing, shape, shadows, animation)
@@ -100,4 +100,4 @@ A single self-contained HTML file:
    > "Showcase regenerated with N components. Open in your browser to review."
 
 3. If new components were detected from codebase but not in system.md:
-   > "Found N new components in codebase not in system.md: [list]. Added to showcase. Run `/stencil trim` to define their token patterns."
+   > "Found N new components in codebase not in system.md: [list]. Added to showcase. Run `/chisel trim` to define their token patterns."

@@ -1,6 +1,6 @@
 {
-  "name": "stencil",
-  "description": "Design system stencil for frontend interfaces. Cut the pattern, lay it out, trim the edges, check the work.",
+  "name": "chisel",
+  "description": "Design system chisel for frontend interfaces. Cut the pattern, lay it out, trim the edges, check the work.",
   "author": {
     "name": "ppazosp"
   }

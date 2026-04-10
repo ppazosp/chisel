@@ -1,23 +1,23 @@
 {
-  "name": "stencil",
+  "name": "chisel",
   "version": "1.0.0",
-  "description": "Design system stencil for frontend interfaces. Cut the pattern, lay it out, trim the edges, check the work.",
+  "description": "Design system studio for frontend interfaces. Cut the design, trace it onto pages, trim the edges, check the work.",
   "commands": [
     {
       "name": "cut",
-      "description": "Cut a new stencil — direction, tokens, component showcase",
+      "description": "Cut the design — direction, tokens, component showcase",
       "file": "commands/cut.md",
       "argument_hint": "Optional: what you're building (e.g. \"admin dashboard\", \"analytics app\")"
     },
     {
       "name": "trace",
-      "description": "Trace the stencil — build frontend pages using the design system",
+      "description": "Trace the design — build frontend pages using the design system",
       "file": "commands/trace.md",
       "argument_hint": "What to build (e.g. \"dashboard with sidebar\", \"settings page\", \"login form\")"
     },
     {
       "name": "lay",
-      "description": "Lay out the stencil — regenerate component showcase",
+      "description": "Lay out the design — regenerate component showcase",
       "file": "commands/lay.md"
     },
     {
@@ -28,7 +28,7 @@
     },
     {
       "name": "check",
-      "description": "Hold the stencil against the work — audit code against the design system",
+      "description": "Check the work — audit code against the design system",
       "file": "commands/check.md"
     }
   ],

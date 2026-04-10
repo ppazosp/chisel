@@ -19,7 +19,7 @@ Shape a design system from scratch. Detect context, establish aesthetic directio
 
 1. **Check for existing system:**
    - Look for `docs/design/system.md`
-   - If it exists: "Design system already exists. Use `/stencil trim` to tweak it or `/stencil lay` to regenerate the showcase."
+   - If it exists: "Design system already exists. Use `/chisel trim` to tweak it or `/chisel lay` to regenerate the showcase."
    - STOP — don't overwrite an existing system without explicit confirmation
 
 2. **Load project context:**
@@ -243,7 +243,7 @@ Shape a design system from scratch. Detect context, establish aesthetic directio
 
 ```css
 /* Auto-generated from system.md — do not edit manually */
-/* Regenerate with: /stencil lay */
+/* Regenerate with: /chisel lay */
 
 :root {
   /* Colors — Light */
@@ -395,7 +395,7 @@ A single self-contained HTML file that:
 4. **When user approves ("looks good", "let's go", "ship it"):**
    - Commit all design files: `feat[design]: initialize design system`
    - Present summary of tokens and components
-   - Remind: "Use `/stencil trim` to tweak later, `/stencil check` to audit code against the system."
+   - Remind: "Use `/chisel trim` to tweak later, `/chisel check` to audit code against the system."
 
 ---
 

@@ -18,7 +18,7 @@ Build frontend pages by tracing the stencil. Every component follows `system.md`
 **Actions:**
 
 1. **Check for `docs/design/system.md`:**
-   - If missing: STOP — "No design system found. Run `/stencil cut` first."
+   - If missing: STOP — "No design system found. Run `/chisel cut` first."
 
 2. **Read fully:**
    - `docs/design/system.md` — all tokens, direction, component patterns
@@ -195,9 +195,9 @@ Build frontend pages by tracing the stencil. Every component follows `system.md`
 
 3. **Suggest next steps:**
    > "Run your dev server to preview. Then:
-   > - `/stencil trace` another page
-   > - `/stencil trim` to tweak the design system
-   > - `/stencil check` to audit everything"
+   > - `/chisel trace` another page
+   > - `/chisel trim` to tweak the design system
+   > - `/chisel check` to audit everything"
 
 ---
 
@@ -205,7 +205,7 @@ Build frontend pages by tracing the stencil. Every component follows `system.md`
 
 | Situation | Default Decision |
 |-----------|------------------|
-| Component exists but doesn't use tokens | Use the existing component, don't rewrite it — `/stencil check` will catch token violations later |
+| Component exists but doesn't use tokens | Use the existing component, don't rewrite it — `/chisel check` will catch token violations later |
 | Component naming | Follow existing codebase conventions (PascalCase for React, kebab-case for Vue, etc.) |
 | File location | Follow existing directory structure — don't create new conventions |
 | Layout approach | CSS Grid for 2D layouts, Flexbox for 1D — never float |
