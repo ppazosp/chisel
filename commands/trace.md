@@ -1,19 +1,19 @@
 ---
-description: Trace the stencil — build frontend pages using the design system
+description: Trace the design — build frontend pages using the design system
 argument-hint: What to build (e.g. "dashboard with sidebar and stats", "settings page", "login form")
 ---
 
 # Trace
 
-Build frontend pages by tracing the stencil. Every component follows `system.md`, every value comes from `tokens.css`. Pure frontend — no backend, no API integration.
+Think deeply about a page, then build it fast. Understand the purpose, decompose into components, plan layout and interactions, then dispatch parallel agents to build each component simultaneously.
 
 **Input:** $ARGUMENTS
 
 ---
 
-## Phase 0: Load Design System
+## Phase 0: Load Context
 
-**Goal:** Read the stencil before tracing
+**Goal:** Load everything before thinking
 
 **Actions:**
 
@@ -32,118 +32,246 @@ Build frontend pages by tracing the stencil. Every component follows `system.md`
    - Tailwind yes/no
    - Component directory convention (e.g., `src/components/`, `components/`)
 
-5. **If `$ARGUMENTS` is empty:** ask "What page do you want to build?"
+5. **Scan existing components:**
+   - Glob for `src/components/**/*.{tsx,jsx,vue,svelte}`
+   - Build a list of what already exists — names, props, variants
+
+6. **If `$ARGUMENTS` is empty:** ask "What page do you want to build?"
 
 ---
 
-## Phase 1: Plan the Page
+## Phase 1: Understand the Page
 
-**Goal:** Break the page into components before writing code
+**Goal:** Think about WHAT this page is before HOW to build it
+
+**DO NOT write any code yet. Think first.**
 
 **Process:**
 
-1. **Parse the request.** Understand what the page needs:
-   - Layout structure (sidebar? header? grid? single column?)
-   - Which components from `system.md` are needed
-   - Which components are NEW and need to be created
+1. **Purpose:**
+   - What is this page for? What problem does it solve?
+   - Who uses it? What's the primary action they take here?
+   - What information is most important on this page?
+   - What's the user's mental model when they arrive here?
 
-2. **Present the component plan:**
-   > "To build this page I need:
-   >
-   > **Existing components (from design system):**
-   > - Button — already defined in system.md
-   > - Card — already defined in system.md
-   >
-   > **New components to create:**
-   > - StatsRow — grid of stat cards
-   > - ActivityTable — data table with rows
-   >
-   > **Page layout:**
-   > - Sidebar (left) + main content (right)
-   > - Stats row at top
-   > - Activity table below
-   >
-   > Good to go?"
+2. **Features:**
+   - What does the user DO on this page? List every interaction.
+   - What data does the page display? Where does it come from?
+   - What states does the page have? (empty, loading, populated, error)
+   - What happens on success? On failure?
 
-3. **Get user confirmation.** Adjust if needed.
+3. **Present your understanding:**
+   > "Here's how I understand this page:
+   >
+   > **Purpose:** [what and why]
+   > **Primary action:** [the main thing users do here]
+   > **Key information:** [what's most prominent]
+   > **Features:**
+   > - [feature 1 — interaction + outcome]
+   > - [feature 2 — interaction + outcome]
+   > **States:** [empty, loaded, error, etc.]
+   >
+   > Is this right? Anything missing?"
+
+4. **Get user confirmation.** Don't proceed until the purpose is clear.
 
 ---
 
-## Phase 2: Build Components
+## Phase 2: Decompose into Components
 
-**Goal:** Create each component file, one at a time, using design tokens
+**Goal:** Break the page into a component tree — every piece identified and specced
 
-**CRITICAL: Invoke the `ui-craft` skill mentally for every component.** Apply its principles:
-- Concentric border radius on nested elements
-- Shadows over borders for depth
-- Optical alignment on icons
-- `tabular-nums` on dynamic numbers
-- `text-wrap: balance` on headings
-- Scale on press for interactive elements
-- Stagger animations on lists
-- `transition-property` specific, never `all`
-- Hit areas at least 44x44px
-- `ease-out` for entries, custom curves
-- `prefers-reduced-motion` respected
+**Process:**
 
-**For each component:**
+1. **Identify every component the page needs:**
+   - Start from the outermost layout and work inward
+   - Every distinct visual element is a component
+   - Every repeated pattern is a component
+   - Every interactive piece is a component
 
-1. **Check if it already exists** in the codebase — don't recreate existing components
-2. **Create one file per component** — clean separation, no multi-component files
-3. **All design values MUST come from tokens:**
-   - Colors → `var(--color-*)` or Tailwind mapped classes
-   - Spacing → `var(--space-*)` or Tailwind mapped classes
-   - Radius → `var(--radius-*)` or Tailwind mapped classes
-   - Shadows → `var(--shadow-*)` or Tailwind mapped classes
-   - Typography → `var(--font-*)`, `var(--text-*)` or Tailwind mapped classes
-   - Animation → `var(--duration-*)`, `var(--ease-*)` or Tailwind mapped classes
-4. **Follow the component patterns** defined in `system.md` — sizes, variants, states
-5. **Include all interactive states:** default, hover, active, focus-visible, disabled
-6. **Gate hover behind** `@media (hover: hover) and (pointer: fine)`
+2. **Classify each component:**
 
-**Order:** Build leaf components first (Button, Badge, Input), then composite components (StatsRow, ActivityTable), then the page.
+   | Classification | Meaning | Example |
+   |---|---|---|
+   | **Exists** | Already in codebase, reuse as-is | Button, Badge, Avatar |
+   | **Exists in system** | Defined in system.md showcase but not yet built | Card, Input, Select |
+   | **New leaf** | New atomic component, no children | StatsCard, ActivityRow |
+   | **New composite** | New component composed of other components | StatsGrid, ActivityTable |
+   | **Page layout** | The page shell — arranges everything | DashboardPage |
+
+3. **For each NEW component, define:**
+   - **Props:** what data it accepts
+   - **Variants:** size/style variants if any
+   - **States:** default, hover, active, disabled, empty, loading, error
+   - **Interactions:** what happens on click, hover, focus
+   - **Tokens used:** which design tokens it consumes
+   - **Children:** what components it contains (for composites)
 
 ---
 
-## Phase 3: Build the Page
+## Phase 3: Plan Layout and Interactions
 
-**Goal:** Compose the page from the components
+**Goal:** Define how components are arranged and how they talk to each other
 
-**Actions:**
+**Process:**
 
-1. **Create the page file** in the framework's expected location:
-   - Next.js → `app/<route>/page.tsx` or `pages/<route>.tsx`
-   - Vue/Nuxt → `pages/<route>.vue`
-   - SvelteKit → `src/routes/<route>/+page.svelte`
-   - Astro → `src/pages/<route>.astro`
-   - Vanilla → `<route>/index.html`
+1. **Layout plan:**
+   - Draw the structure as a text diagram:
+     ```
+     ┌──────────────────────────────────────────┐
+     │ Header                                    │
+     ├────────────┬─────────────────────────────┤
+     │            │ StatsGrid                    │
+     │  Sidebar   │  ┌──────┐┌──────┐┌──────┐  │
+     │            │  │Stat  ││Stat  ││Stat  │  │
+     │            │  └──────┘└──────┘└──────┘  │
+     │            ├─────────────────────────────┤
+     │            │ ActivityTable               │
+     │            │  ┌─────────────────────────┐│
+     │            │  │ ActivityRow              ││
+     │            │  │ ActivityRow              ││
+     │            │  │ ActivityRow              ││
+     │            │  └─────────────────────────┘│
+     └────────────┴─────────────────────────────┘
+     ```
+   - Specify: CSS Grid or Flexbox for each level
+   - Specify: responsive behavior (how it collapses on mobile)
 
-2. **Import all components** used in the page
+2. **Interaction map:**
+   - Which components trigger state changes in other components?
+   - What state lives where? (page-level vs component-level)
+   - Navigation flows (click sidebar item → filter table? switch view?)
+   - Any shared state between components?
 
-3. **Build the layout:**
-   - Use CSS Grid or Flexbox for page structure
-   - All spacing from token scale
-   - Responsive by default — mobile-first, breakpoints where needed
+   ```
+   Interactions:
+     Sidebar nav click → updates active page, highlights nav item
+     StatsCard click → filters ActivityTable to that stat's category
+     ActivityTable sort header → re-sorts rows locally
+     Search input → filters ActivityTable rows
+   ```
 
-4. **Use placeholder data** — realistic but clearly fake:
-   - Names: "Akira Tanaka", "Sofia Reyes" (not "John Doe")
-   - Numbers: varied, not round (1,247 not 1,000)
-   - Dates: recent, relative to today
-   - Images: use placeholder services or solid color blocks with initials
+3. **Data plan:**
+   - What placeholder data structure does each component need?
+   - Define TypeScript types/interfaces for the data shapes
+   - Realistic placeholder values (not lorem ipsum, not "John Doe")
 
-5. **Wire up basic interactivity:**
-   - Navigation highlighting
-   - Button click handlers (console.log or state toggle)
-   - Input state management
-   - No API calls — just frontend state
+4. **Present the full plan:**
+   > "Here's the build plan:
+   >
+   > **Component tree:**
+   > [diagram]
+   >
+   > **New components to build (6):**
+   > - StatsCard (leaf) — icon, value, label, trend
+   > - StatsGrid (composite) — responsive grid of StatsCards
+   > - ActivityRow (leaf) — avatar, description, timestamp, badge
+   > - ActivityTable (composite) — header + list of ActivityRows
+   > - Sidebar (composite) — nav links, user avatar
+   > - DashboardPage (layout) — arranges everything
+   >
+   > **Reusing (3):**
+   > - Button, Badge, Avatar (already exist)
+   >
+   > **Interactions:**
+   > [interaction map]
+   >
+   > Ready to build?"
+
+5. **Get user confirmation.** This is the last checkpoint before parallel build.
 
 ---
 
-## Phase 4: Polish Pass
+## Phase 4: Build Components in Parallel
 
-**Goal:** Apply ui-craft principles to everything just built
+**Goal:** Dispatch one agent per component — all leaf components simultaneously, then composites, then page
 
-**Review every component and page file against the ui-craft checklist:**
+**CRITICAL RULES for every agent:**
+- All design values from tokens — no hardcoded colors, spacing, radius, shadows
+- Follow component patterns from `system.md`
+- Apply `ui-craft` principles:
+  - Concentric border radius on nested elements
+  - Shadows over borders for depth
+  - Optical alignment on icons
+  - `tabular-nums` on dynamic numbers
+  - `text-wrap: balance` on headings
+  - Scale `0.97` on press for interactive elements
+  - `transition-property` specific, never `all`
+  - Hit areas at least 44x44px
+  - `ease-out` for entries, custom curves
+  - `prefers-reduced-motion` respected
+  - Hover gated behind `@media (hover: hover) and (pointer: fine)`
+- One file per component
+- Include all states: default, hover, active, focus-visible, disabled
+- Realistic placeholder data
+
+**Build order — three waves:**
+
+### Wave 1: Leaf components (parallel)
+
+Dispatch one agent per leaf component simultaneously. Each agent receives:
+- Component name, props, variants, states, interactions
+- Full `system.md` content
+- Framework context (React/Vue/Svelte, Tailwind yes/no)
+- The ui-craft rules above
+- File path to create
+
+```
+Example with 4 leaf components:
+
+Agent("Build StatsCard.tsx — [full spec + system.md + ui-craft rules]")
+Agent("Build ActivityRow.tsx — [full spec + system.md + ui-craft rules]")
+Agent("Build NavItem.tsx — [full spec + system.md + ui-craft rules]")
+Agent("Build SearchInput.tsx — [full spec + system.md + ui-craft rules]")
+
+All 4 run simultaneously.
+```
+
+**Batch size:** max 8 parallel agents. If more than 8 leaf components, batch into groups.
+
+**Wait for all Wave 1 agents to complete before Wave 2.**
+
+### Wave 2: Composite components (parallel)
+
+Dispatch one agent per composite component. Each agent receives everything from Wave 1 plus:
+- The file paths of child components created in Wave 1
+- How children are arranged (layout spec from Phase 3)
+- Interaction map — what state this component manages
+
+```
+Agent("Build StatsGrid.tsx — uses StatsCard, responsive grid — [spec]")
+Agent("Build ActivityTable.tsx — uses ActivityRow, sortable — [spec]")
+Agent("Build Sidebar.tsx — uses NavItem, sticky — [spec]")
+
+All 3 run simultaneously.
+```
+
+**Wait for all Wave 2 agents to complete before Wave 3.**
+
+### Wave 3: Page assembly (single agent)
+
+One agent assembles the page. It receives:
+- All component file paths from Wave 1 + Wave 2
+- Layout diagram from Phase 3
+- Interaction map — page-level state, component communication
+- Data types and placeholder data
+- Routing/framework conventions
+
+The page agent:
+1. Creates the page file in the framework's expected location
+2. Imports all components
+3. Defines page-level state and data
+4. Wires up inter-component interactions
+5. Implements responsive layout
+6. Adds placeholder data with realistic values
+
+---
+
+## Phase 5: Polish Pass
+
+**Goal:** Review everything just built against ui-craft
+
+**Review every component and page file against the checklist:**
 
 - [ ] Nested rounded elements use concentric border radius
 - [ ] Icons are optically centered
@@ -160,35 +288,39 @@ Build frontend pages by tracing the stencil. Every component follows `system.md`
 - [ ] Hover gated behind media query
 - [ ] `prefers-reduced-motion` respected
 - [ ] No hardcoded design values — all from tokens
+- [ ] Component communication works as planned
+- [ ] Responsive layout collapses correctly
 
-**Fix any violations before proceeding.**
+**Fix any violations.**
 
 ---
 
-## Phase 5: Verify and Report
+## Phase 6: Verify and Report
 
-**Goal:** Make sure it runs and looks right
+**Goal:** Make sure it runs
 
 **Actions:**
 
-1. **Run lint/typecheck** if available — fix any errors
+1. **Run lint/typecheck** if available — fix errors
 2. **Report what was built:**
    ```
    Built: Dashboard page
 
-   Components created:
-     src/components/StatsCard.tsx — stat display with icon, value, label
-     src/components/StatsRow.tsx — responsive grid of StatsCards
-     src/components/ActivityTable.tsx — data table with sortable headers
-     src/components/ActivityRow.tsx — single table row with avatar, action, timestamp
+   Wave 1 (leaf components, built in parallel):
+     src/components/StatsCard.tsx — stat with icon, value, label, trend
+     src/components/ActivityRow.tsx — row with avatar, action, timestamp
+     src/components/NavItem.tsx — sidebar navigation item
+     src/components/SearchInput.tsx — search with icon and clear button
 
-   Components reused (already existed):
-     src/components/Button.tsx
-     src/components/Badge.tsx
-     src/components/Avatar.tsx
+   Wave 2 (composite components, built in parallel):
+     src/components/StatsGrid.tsx — responsive grid of StatsCards
+     src/components/ActivityTable.tsx — sortable table of ActivityRows
+     src/components/Sidebar.tsx — sticky nav with user avatar
 
-   Page:
-     app/dashboard/page.tsx — sidebar + stats + activity table
+   Wave 3 (page assembly):
+     app/dashboard/page.tsx — full layout with interactions
+
+   Reused: Button, Badge, Avatar
 
    All values from design tokens. Run the dev server to preview.
    ```
@@ -205,23 +337,26 @@ Build frontend pages by tracing the stencil. Every component follows `system.md`
 
 | Situation | Default Decision |
 |-----------|------------------|
-| Component exists but doesn't use tokens | Use the existing component, don't rewrite it — `/chisel check` will catch token violations later |
-| Component naming | Follow existing codebase conventions (PascalCase for React, kebab-case for Vue, etc.) |
-| File location | Follow existing directory structure — don't create new conventions |
-| Layout approach | CSS Grid for 2D layouts, Flexbox for 1D — never float |
-| Responsive breakpoints | Mobile-first: `sm:`, `md:`, `lg:` — match framework defaults |
-| Placeholder data | Realistic, diverse, not lorem ipsum |
+| Component exists but doesn't use tokens | Reuse it — `/chisel check` will catch violations later |
+| Component naming | Follow codebase conventions (PascalCase React, kebab-case Vue) |
+| File location | Follow existing directory structure |
+| Layout approach | CSS Grid for 2D, Flexbox for 1D — never float |
+| Responsive | Mobile-first with `sm:`, `md:`, `lg:` breakpoints |
+| Placeholder data | Realistic, diverse, varied numbers |
 | State management | Local state only — no global stores, no API calls |
-| Animations | Follow ui-craft: ease-out entries, stagger 30-80ms, durations under 300ms |
-| Missing tokens | If a value isn't in `system.md`, add it to `system.md` and `tokens.css` before using it |
-| Multiple pages requested | Build one at a time, confirm each before starting the next |
+| Animations | ui-craft: ease-out entries, stagger 30-80ms, under 300ms |
+| Missing tokens | Add to `system.md` and `tokens.css` before using |
+| Multiple pages | Build one at a time, confirm each |
+| Component needs >5 props | Consider splitting into smaller components |
+| Shared state between components | Lift to nearest common parent, pass down |
 
 ---
 
 ## Red Flags — STOP and ask user if:
 
-- No design system exists (`docs/design/system.md` missing)
-- Page requires backend/API integration the user hasn't mentioned
-- Page needs components that fundamentally conflict with the design system
-- Requested layout doesn't work responsively without major trade-offs
-- More than 8 new components needed — might indicate the page should be split
+- No design system exists
+- Page requires backend/API integration not mentioned
+- Components fundamentally conflict with the design system
+- Layout doesn't work responsively
+- More than 12 new components — page should be split
+- Interaction map has circular dependencies
