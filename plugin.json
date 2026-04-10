@@ -10,6 +10,12 @@
       "argument_hint": "Optional: what you're building (e.g. \"admin dashboard\", \"analytics app\")"
     },
     {
+      "name": "trace",
+      "description": "Trace the stencil — build frontend pages using the design system",
+      "file": "commands/trace.md",
+      "argument_hint": "What to build (e.g. \"dashboard with sidebar\", \"settings page\", \"login form\")"
+    },
+    {
       "name": "lay",
       "description": "Lay out the stencil — regenerate component showcase",
       "file": "commands/lay.md"
