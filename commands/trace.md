@@ -11,7 +11,7 @@ Think deeply about a page, then build it fast. Understand the purpose, decompose
 
 ---
 
-## Phase 0: Load Context
+## Phase 0: Pick Up the Chisel
 
 **Goal:** Load everything before thinking
 
@@ -40,7 +40,7 @@ Think deeply about a page, then build it fast. Understand the purpose, decompose
 
 ---
 
-## Phase 1: WHY — Purpose
+## Phase 1: Study the Stone — Purpose
 
 **Goal:** Understand why this page exists before anything else
 
@@ -62,7 +62,7 @@ Think deeply about a page, then build it fast. Understand the purpose, decompose
 
 ---
 
-## Phase 2: WHAT — User Journey and Features
+## Phase 2: Study the Stone — Journey and Features
 
 **Goal:** Map everything the user does on this page, step by step
 
@@ -87,7 +87,7 @@ Think deeply about a page, then build it fast. Understand the purpose, decompose
 
 ---
 
-## Phase 3: WHAT — Information Architecture
+## Phase 3: Study the Stone — Information and Data
 
 **Goal:** What data exists on this page and what's its hierarchy
 
@@ -108,7 +108,7 @@ Think deeply about a page, then build it fast. Understand the purpose, decompose
 
 ---
 
-## Phase 4: WHERE — Layout
+## Phase 4: Mark the Lines — Layout
 
 **Goal:** Where does everything go on the screen
 
@@ -142,7 +142,7 @@ Think deeply about a page, then build it fast. Understand the purpose, decompose
 
 ---
 
-## Phase 5: WHAT PIECES — Component Decomposition
+## Phase 5: Mark the Lines — Components
 
 **Goal:** Now that layout is known, identify every component needed
 
@@ -169,7 +169,7 @@ Think deeply about a page, then build it fast. Understand the purpose, decompose
 
 ---
 
-## Phase 6: HOW — Interactions and State
+## Phase 6: Mark the Lines — Interactions and State
 
 **Goal:** How do the pieces talk to each other
 
@@ -198,7 +198,7 @@ Think deeply about a page, then build it fast. Understand the purpose, decompose
 
 ---
 
-## Phase 7: Confirm the Full Plan
+## Phase 7: Step Back — Confirm the Plan
 
 **Goal:** One final checkpoint before building
 
@@ -230,7 +230,7 @@ Think deeply about a page, then build it fast. Understand the purpose, decompose
 
 ---
 
-## Phase 8: Build Components in Parallel
+## Phase 8: Strike — Build in Parallel
 
 **Goal:** Dispatch one agent per component — all leaf components simultaneously, then composites, then page
 
@@ -315,7 +315,7 @@ The page agent:
 
 ---
 
-## Phase 9: Polish Pass
+## Phase 9: Sand — Polish Pass
 
 **Goal:** Review everything just built against ui-craft
 
@@ -343,7 +343,7 @@ The page agent:
 
 ---
 
-## Phase 10: Verify and Report
+## Phase 10: Inspect — Verify and Report
 
 **Goal:** Make sure it runs
 
