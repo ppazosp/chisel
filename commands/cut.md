@@ -30,7 +30,7 @@ Shape a design system from scratch. Detect context, establish aesthetic directio
 
 3. **Parse input:**
    - If `$ARGUMENTS` is empty: ask "What are you building?" (dashboard, app, landing page, tool, etc.)
-   - Otherwise: use as project description
+   - Otherwise: use as project description. **Always confirm back:** "Building: <description>" so the user knows their input was received.
 
 ---
 
@@ -40,7 +40,23 @@ Shape a design system from scratch. Detect context, establish aesthetic directio
 
 **Process:**
 
-1. **Ask the user:**
+1. **Try to infer the vibe from the project description first.** Use this table:
+
+   | Project description signals | Auto-select |
+   |---|---|
+   | Finance, crypto, trading, analytics, monitoring | **Industrial** |
+   | Dashboard, admin panel, internal tool, developer | **Minimal** |
+   | Kids, game, social, fun, emoji, colorful | **Playful** |
+   | Fashion, jewelry, real estate, premium, exclusive | **Luxury** |
+   | Blog, magazine, news, content, publishing | **Editorial** |
+   | Startup, SaaS, landing page, marketing | **Bold** |
+
+   **If the project description clearly matches a row:** auto-select the vibe and tell the user:
+   > "Building: <description>. Going with **<vibe>** — <one-line reason>. Say 'change' if you want a different direction."
+
+   Then proceed directly to step 3 (research).
+
+   **If the project description is ambiguous or doesn't match any row clearly,** ask:
    > "What's the vibe? Pick one or describe your own:
    > - **Minimal** — clean, lots of whitespace, subtle
    > - **Bold** — high contrast, dramatic, statement-making
@@ -50,7 +66,7 @@ Shape a design system from scratch. Detect context, establish aesthetic directio
    > - **Luxury** — refined, elegant, premium feel
    > - Or: **surprise me**"
 
-2. **If "surprise me":** pick a direction that fits the project type. Dashboard → industrial or minimal. Consumer app → playful or bold. Internal tool → minimal or industrial.
+2. **If "surprise me":** pick a direction that fits the project type using the table above.
 
 3. **Research the vibe online (ALWAYS — even if using Stitch):**
    - Use WebSearch to research the user's chosen aesthetic direction
@@ -60,13 +76,16 @@ Shape a design system from scratch. Detect context, establish aesthetic directio
    - If the vibe is a specific brand or product ("like Linear", "like Notion", "like Nothing Phone"), research that product's design language specifically
    - Share findings with the user: key references, font pairings, color ranges
 
-4. **Check for Stitch MCP (optional, after research):**
+4. **Check for Stitch MCP (after research):**
    - Use `ToolSearch` with query `"stitch"` to check if Stitch MCP tools are available
    - If tools like `mcp__stitch__generate_screen_from_text`, `mcp__stitch__create_project`, etc. are found → Stitch IS available
-   - If no stitch tools found → skip to step 5
+   - If no stitch tools found → **recommend it:**
+     > "Stitch MCP isn't connected. It generates visual mockups from text — highly recommended for better design quality. Install it at https://stitch.withseam.com and add it to your MCP config, then re-run `/chisel cut`."
+     >
+     > Then proceed to step 5 (don't block on it).
 
    **If Stitch IS available, offer it:**
-   > "Stitch is connected — want me to brainstorm layouts visually using what we found from research?"
+   > "Stitch is connected — want me to brainstorm layouts visually using what we found from research? This significantly improves design quality."
 
    If user says yes:
    - Load the Stitch tool schemas via ToolSearch

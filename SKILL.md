@@ -9,7 +9,7 @@ metadata:
 
 # Chisel
 
-Design system chisel for frontend interfaces. Cut the pattern, trace it onto pages, lay it out, hone the edges, check the work.
+Design system studio for frontend interfaces. Cut the design, carve it into pages, lay it out, hone the edges, inspect the work.
 
 ## Commands
 

@@ -46,9 +46,10 @@ Change design tokens, preview the impact in the showcase, and propagate approved
    - Extract concrete token values from the research
    - Use these to inform the changes, don't guess
 
-3. **If stylistic — check for Stitch MCP (optional, after research):**
+3. **If stylistic — check for Stitch MCP (after research):**
    - Use `ToolSearch` with query `"stitch"` to check if Stitch MCP tools are available
-   - If available, offer: "Want me to generate mockups with the new direction in Stitch using what we found?"
+   - If not available: recommend installing it — "Stitch MCP generates visual mockups from text — highly recommended for better design quality. Install at https://stitch.withseam.com"
+   - If available, offer: "Want me to generate mockups with the new direction in Stitch? This significantly improves design quality."
    - If user says yes:
      - Load Stitch tool schemas via ToolSearch
      - Feed research findings into the prompt

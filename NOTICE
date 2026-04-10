@@ -1,0 +1,34 @@
+Chisel
+Copyright (c) 2026 Pablo Pazos
+
+This product includes principles and content adapted from the following:
+
+---
+
+Emil Kowalski
+https://emilkowal.ski/
+
+The animation decision framework, easing guidelines, enter/exit patterns,
+spring animation guidance, and scale-on-press patterns in the ui-craft
+skill are adapted from Emil Kowalski's writing and talks on animation.
+
+---
+
+Make Interfaces Feel Better
+Copyright (c) Jakub Krehel
+https://github.com/jakubkrehel/make-interfaces-feel-better
+
+The surface rules (concentric border radius, shadows over borders, optical
+alignment, image outlines), typography rules (font smoothing, tabular
+numbers, text-wrap), and micro-interaction patterns in the ui-craft skill
+are adapted from the Make Interfaces Feel Better project.
+
+---
+
+interface-design (frontend-design)
+Copyright (c) Dammyjay93
+https://github.com/Dammyjay93/interface-design
+
+The component building workflow, parallel agent dispatch pattern, and
+design system generation approach in Chisel's commands are adapted
+from the interface-design plugin.
