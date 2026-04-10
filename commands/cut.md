@@ -52,34 +52,34 @@ Shape a design system from scratch. Detect context, establish aesthetic directio
 
 2. **If "surprise me":** pick a direction that fits the project type. Dashboard → industrial or minimal. Consumer app → playful or bold. Internal tool → minimal or industrial.
 
-3. **Check for Stitch MCP:**
-   - Use `ToolSearch` with query `"stitch"` to check if Stitch MCP tools are available
-   - If tools like `mcp__stitch__generate_screen_from_text`, `mcp__stitch__create_project`, etc. are found → Stitch IS available
-   - If no stitch tools found → Stitch is NOT available, skip to step 4
-
-   **If Stitch IS available, offer it:**
-   > "Stitch is connected — want me to brainstorm layouts visually first? It can generate screen mockups to explore before we commit to tokens."
-
-   If user says yes:
-   - Load the Stitch tool schemas via ToolSearch
-   - Create a Stitch project with `mcp__stitch__create_project`
-   - Use `mcp__stitch__generate_screen_from_text` to generate 2-3 screen variants based on the project description + chosen vibe
-   - Present them to the user with `mcp__stitch__get_screen`
-   - Extract visual direction from the chosen variant (colors, layout, spacing, typography patterns)
-   - Use these findings to inform token generation in Phase 3
-   - Skip step 4 (online research) — Stitch output replaces it
-
-   If user says no → proceed to step 4
-
-4. **Research the vibe online (when NOT using Stitch):**
+3. **Research the vibe online (ALWAYS — even if using Stitch):**
    - Use WebSearch to research the user's chosen aesthetic direction
    - Search for: `"<vibe> UI design"`, `"<vibe> design system examples"`, `"<vibe> web design inspiration"`
    - Look for: color palettes, typography pairings, spacing patterns, radius conventions, shadow styles, real-world examples
    - Extract concrete design decisions from the research (specific fonts, color ranges, radius values, shadow approaches)
-   - Use these findings to inform token generation in Phase 3 — don't guess, base tokens on real examples of the style
    - If the vibe is a specific brand or product ("like Linear", "like Notion", "like Nothing Phone"), research that product's design language specifically
+   - Share findings with the user: key references, font pairings, color ranges
 
-5. **Confirm direction with the user before proceeding.** Share what you found (from Stitch or research) — key references, font pairings, color ranges — so the user knows what's informing the tokens.
+4. **Check for Stitch MCP (optional, after research):**
+   - Use `ToolSearch` with query `"stitch"` to check if Stitch MCP tools are available
+   - If tools like `mcp__stitch__generate_screen_from_text`, `mcp__stitch__create_project`, etc. are found → Stitch IS available
+   - If no stitch tools found → skip to step 5
+
+   **If Stitch IS available, offer it:**
+   > "Stitch is connected — want me to brainstorm layouts visually using what we found from research?"
+
+   If user says yes:
+   - Load the Stitch tool schemas via ToolSearch
+   - Create a Stitch project with `mcp__stitch__create_project`
+   - Feed the research findings into the prompt — specific fonts, colors, radius, shadow styles discovered
+   - Use `mcp__stitch__generate_screen_from_text` to generate 2-3 screen variants based on research + project description + vibe
+   - Present them to the user with `mcp__stitch__get_screen`
+   - Extract additional visual direction from the chosen variant (layout patterns, component arrangements)
+   - Combine research findings + Stitch output to inform token generation in Phase 3
+
+   If user says no → proceed to step 5
+
+5. **Confirm direction with the user before proceeding.** Present the full picture — research findings + Stitch mockup (if used) — so the user knows what's informing the tokens.
 
 ---
 

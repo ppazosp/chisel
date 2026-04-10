@@ -39,26 +39,24 @@ Change design tokens, preview the impact in the showcase, and propagate approved
    | **Concrete** | "rounder buttons", "darker background", "change primary to blue" | Skip research, map directly to tokens |
    | **Stylistic** | "make it look like Linear", "brutalist", "more playful", "warmer" | Research first, then map to tokens |
 
-2. **If stylistic — research before changing tokens:**
-
-   **Check for Stitch MCP first:**
-   - Use `ToolSearch` with query `"stitch"` to check if Stitch MCP tools are available
-   - If available, offer: "Want me to generate mockups with the new direction in Stitch before updating tokens?"
-   - If user says yes:
-     - Load Stitch tool schemas via ToolSearch
-     - Use `mcp__stitch__generate_screen_from_text` to generate 1-2 variants applying the new style to the existing layout
-     - Present to user, extract concrete token values from the chosen variant
-     - Skip online research — Stitch output replaces it
-   - If user says no, or Stitch not available → fall back to online research
-
-   **Online research (when not using Stitch):**
+2. **If stylistic — research online (ALWAYS):**
    - Use WebSearch to research what the user means concretely
    - Search for: `"<style> UI design tokens"`, `"<style> color palette"`, `"<style> design system"`
    - If it references a product ("like Linear", "like Notion"): research that product's specific design language — colors, fonts, radius, shadows
    - Extract concrete token values from the research
    - Use these to inform the changes, don't guess
 
-3. **Map request to token changes:**
+3. **If stylistic — check for Stitch MCP (optional, after research):**
+   - Use `ToolSearch` with query `"stitch"` to check if Stitch MCP tools are available
+   - If available, offer: "Want me to generate mockups with the new direction in Stitch using what we found?"
+   - If user says yes:
+     - Load Stitch tool schemas via ToolSearch
+     - Feed research findings into the prompt
+     - Use `mcp__stitch__generate_screen_from_text` to generate 1-2 variants applying the new style
+     - Present to user, combine research + Stitch output to inform token changes
+   - If user says no, or Stitch not available → proceed with research findings only
+
+4. **Map request to token changes:**
 
    | Request | Tokens affected |
    |---|---|
