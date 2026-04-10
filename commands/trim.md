@@ -32,7 +32,21 @@ Change design tokens, preview the impact in the showcase, and propagate approved
 
 **Process:**
 
-1. **Parse the request.** Map natural language to token changes:
+1. **Classify the request:**
+
+   | Type | Examples | Action |
+   |---|---|---|
+   | **Concrete** | "rounder buttons", "darker background", "change primary to blue" | Skip research, map directly to tokens |
+   | **Stylistic** | "make it look like Linear", "brutalist", "more playful", "warmer" | Research first, then map to tokens |
+
+2. **If stylistic — research before changing tokens:**
+   - Use WebSearch to research what the user means concretely
+   - Search for: `"<style> UI design tokens"`, `"<style> color palette"`, `"<style> design system"`
+   - If it references a product ("like Linear", "like Notion"): research that product's specific design language — colors, fonts, radius, shadows
+   - Extract concrete token values from the research
+   - Use these to inform the changes, don't guess
+
+3. **Map request to token changes:**
 
    | Request | Tokens affected |
    |---|---|
@@ -45,7 +59,7 @@ Change design tokens, preview the impact in the showcase, and propagate approved
    | "less shadow" | `--shadow-*` values reduce |
    | "tighter spacing" | `--space-*` scale compresses |
 
-2. **Present the planned changes as a diff:**
+4. **Present the planned changes as a diff:**
    ```
    Token changes:
      --color-primary:       #6366f1 → #3b82f6
@@ -53,7 +67,7 @@ Change design tokens, preview the impact in the showcase, and propagate approved
      --radius-md:           8px → 12px
    ```
 
-3. **Ask: "Apply these changes and regenerate showcase?"**
+5. **Ask: "Apply these changes and regenerate showcase?"**
    - If user adjusts: recalculate and re-present
    - If user confirms: proceed
 
