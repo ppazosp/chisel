@@ -40,149 +40,197 @@ Think deeply about a page, then build it fast. Understand the purpose, decompose
 
 ---
 
-## Phase 1: Understand the Page
+## Phase 1: WHY — Purpose
 
-**Goal:** Think about WHAT this page is before HOW to build it
+**Goal:** Understand why this page exists before anything else
 
-**DO NOT write any code yet. Think first.**
+**DO NOT write any code. Think first.**
 
-**Process:**
+1. **What is this page for?** What problem does it solve?
+2. **Who uses it?** What role, what context, what mood?
+3. **What's the primary action?** The ONE thing users come here to do.
+4. **What's the user's mental model?** What do they expect to see when they arrive?
 
-1. **Purpose:**
-   - What is this page for? What problem does it solve?
-   - Who uses it? What's the primary action they take here?
-   - What information is most important on this page?
-   - What's the user's mental model when they arrive here?
+**Present:**
+> "**Purpose:** [what and why]
+> **Primary user:** [who]
+> **Primary action:** [the main thing]
+>
+> Is this right?"
 
-2. **Features:**
-   - What does the user DO on this page? List every interaction.
-   - What data does the page display? Where does it come from?
-   - What states does the page have? (empty, loading, populated, error)
-   - What happens on success? On failure?
-
-3. **Present your understanding:**
-   > "Here's how I understand this page:
-   >
-   > **Purpose:** [what and why]
-   > **Primary action:** [the main thing users do here]
-   > **Key information:** [what's most prominent]
-   > **Features:**
-   > - [feature 1 — interaction + outcome]
-   > - [feature 2 — interaction + outcome]
-   > **States:** [empty, loaded, error, etc.]
-   >
-   > Is this right? Anything missing?"
-
-4. **Get user confirmation.** Don't proceed until the purpose is clear.
+**Get confirmation.** Don't proceed until the WHY is clear.
 
 ---
 
-## Phase 2: Decompose into Components
+## Phase 2: WHAT — User Journey and Features
 
-**Goal:** Break the page into a component tree — every piece identified and specced
+**Goal:** Map everything the user does on this page, step by step
 
-**Process:**
+1. **Walk through the user journey:**
+   - User arrives → what do they see first?
+   - What do they scan? What draws their eye?
+   - What do they click/tap? What happens?
+   - What are the secondary actions?
+   - When are they done? Where do they go next?
 
-1. **Identify every component the page needs:**
-   - Start from the outermost layout and work inward
-   - Every distinct visual element is a component
-   - Every repeated pattern is a component
-   - Every interactive piece is a component
+2. **List every feature as interaction + outcome:**
+   - "Click stat card → filters table to that category"
+   - "Type in search → filters rows in real time"
+   - "Click sort header → re-sorts by that column"
 
-2. **Classify each component:**
+3. **List page states:**
+   - Empty (no data yet)
+   - Loading (fetching)
+   - Populated (normal use)
+   - Error (something broke)
+   - What does each state look like?
+
+---
+
+## Phase 3: WHAT — Information Architecture
+
+**Goal:** What data exists on this page and what's its hierarchy
+
+1. **Information hierarchy** — rank by importance:
+   - **Primary:** the most critical data (what users came for)
+   - **Secondary:** supporting context (helps interpret primary)
+   - **Tertiary:** metadata, timestamps, labels
+   - **Actions:** buttons, links, controls
+
+2. **Data shapes:**
+   - Define TypeScript types/interfaces for every data entity on the page
+   - What fields? What types? What's optional?
+   - Where does the data come from? (API, local state, URL params)
+
+3. **Placeholder data:**
+   - Realistic values — diverse names, varied numbers, recent dates
+   - Not "John Doe", not round numbers, not lorem ipsum
+
+---
+
+## Phase 4: WHERE — Layout
+
+**Goal:** Where does everything go on the screen
+
+1. **Draw the layout as a text diagram:**
+   ```
+   ┌──────────────────────────────────────────┐
+   │ Header                                    │
+   ├────────────┬─────────────────────────────┤
+   │            │ StatsGrid                    │
+   │  Sidebar   │  ┌──────┐┌──────┐┌──────┐  │
+   │            │  │Stat  ││Stat  ││Stat  │  │
+   │            │  └──────┘└──────┘└──────┘  │
+   │            ├─────────────────────────────┤
+   │            │ ActivityTable               │
+   │            │  ┌─────────────────────────┐│
+   │            │  │ ActivityRow              ││
+   │            │  │ ActivityRow              ││
+   │            │  └─────────────────────────┘│
+   └────────────┴─────────────────────────────┘
+   ```
+
+2. **Specify for each level:**
+   - CSS Grid or Flexbox
+   - Gap/spacing (from token scale)
+   - Alignment
+
+3. **Responsive behavior:**
+   - How does it collapse on mobile?
+   - What stacks? What hides? What shrinks?
+   - Breakpoints (mobile-first: `sm:`, `md:`, `lg:`)
+
+---
+
+## Phase 5: WHAT PIECES — Component Decomposition
+
+**Goal:** Now that layout is known, identify every component needed
+
+1. **Walk through the layout diagram and name every piece:**
+   - Every distinct visual element = component
+   - Every repeated pattern = component
+   - Every interactive piece = component
+
+2. **Classify each:**
 
    | Classification | Meaning | Example |
    |---|---|---|
-   | **Exists** | Already in codebase, reuse as-is | Button, Badge, Avatar |
-   | **Exists in system** | Defined in system.md showcase but not yet built | Card, Input, Select |
-   | **New leaf** | New atomic component, no children | StatsCard, ActivityRow |
-   | **New composite** | New component composed of other components | StatsGrid, ActivityTable |
-   | **Page layout** | The page shell — arranges everything | DashboardPage |
+   | **Exists** | Already in codebase, reuse | Button, Badge, Avatar |
+   | **Exists in system** | In system.md but not built yet | Card, Input, Select |
+   | **New leaf** | Atomic, no children | StatsCard, ActivityRow |
+   | **New composite** | Contains other components | StatsGrid, ActivityTable |
+   | **Page layout** | The page shell | DashboardPage |
 
 3. **For each NEW component, define:**
-   - **Props:** what data it accepts
-   - **Variants:** size/style variants if any
+   - **Props:** what data it accepts (from the types defined in Phase 3)
+   - **Variants:** size/style variants
    - **States:** default, hover, active, disabled, empty, loading, error
-   - **Interactions:** what happens on click, hover, focus
    - **Tokens used:** which design tokens it consumes
-   - **Children:** what components it contains (for composites)
 
 ---
 
-## Phase 3: Plan Layout and Interactions
+## Phase 6: HOW — Interactions and State
 
-**Goal:** Define how components are arranged and how they talk to each other
+**Goal:** How do the pieces talk to each other
 
-**Process:**
-
-1. **Layout plan:**
-   - Draw the structure as a text diagram:
-     ```
-     ┌──────────────────────────────────────────┐
-     │ Header                                    │
-     ├────────────┬─────────────────────────────┤
-     │            │ StatsGrid                    │
-     │  Sidebar   │  ┌──────┐┌──────┐┌──────┐  │
-     │            │  │Stat  ││Stat  ││Stat  │  │
-     │            │  └──────┘└──────┘└──────┘  │
-     │            ├─────────────────────────────┤
-     │            │ ActivityTable               │
-     │            │  ┌─────────────────────────┐│
-     │            │  │ ActivityRow              ││
-     │            │  │ ActivityRow              ││
-     │            │  │ ActivityRow              ││
-     │            │  └─────────────────────────┘│
-     └────────────┴─────────────────────────────┘
-     ```
-   - Specify: CSS Grid or Flexbox for each level
-   - Specify: responsive behavior (how it collapses on mobile)
-
-2. **Interaction map:**
-   - Which components trigger state changes in other components?
-   - What state lives where? (page-level vs component-level)
-   - Navigation flows (click sidebar item → filter table? switch view?)
-   - Any shared state between components?
-
+1. **Interaction map:**
    ```
-   Interactions:
-     Sidebar nav click → updates active page, highlights nav item
-     StatsCard click → filters ActivityTable to that stat's category
-     ActivityTable sort header → re-sorts rows locally
-     Search input → filters ActivityTable rows
+   Sidebar nav click     → updates activeSection (page state) → highlights nav, scrolls content
+   StatsCard click       → updates filter (page state) → ActivityTable re-filters
+   Sort header click     → updates sortKey (table state) → rows re-sort locally
+   Search input onChange  → updates query (page state) → ActivityTable filters
    ```
 
-3. **Data plan:**
-   - What placeholder data structure does each component need?
-   - Define TypeScript types/interfaces for the data shapes
-   - Realistic placeholder values (not lorem ipsum, not "John Doe")
+2. **State ownership:**
+   - What state lives at page level? (shared between components)
+   - What state lives inside a component? (local only)
+   - What gets passed down as props vs managed internally?
 
-4. **Present the full plan:**
-   > "Here's the build plan:
-   >
-   > **Component tree:**
-   > [diagram]
-   >
-   > **New components to build (6):**
-   > - StatsCard (leaf) — icon, value, label, trend
-   > - StatsGrid (composite) — responsive grid of StatsCards
-   > - ActivityRow (leaf) — avatar, description, timestamp, badge
-   > - ActivityTable (composite) — header + list of ActivityRows
-   > - Sidebar (composite) — nav links, user avatar
-   > - DashboardPage (layout) — arranges everything
-   >
-   > **Reusing (3):**
-   > - Button, Badge, Avatar (already exist)
-   >
-   > **Interactions:**
-   > [interaction map]
-   >
-   > Ready to build?"
-
-5. **Get user confirmation.** This is the last checkpoint before parallel build.
+3. **State flow diagram:**
+   ```
+   DashboardPage (owns: activeSection, filter, searchQuery)
+   ├── Sidebar (receives: activeSection, emits: onNavigate)
+   ├── StatsGrid (receives: data, emits: onStatClick → sets filter)
+   │   └── StatsCard (receives: stat, onClick)
+   └── ActivityTable (receives: data, filter, searchQuery)
+       └── ActivityRow (receives: activity)
+   ```
 
 ---
 
-## Phase 4: Build Components in Parallel
+## Phase 7: Confirm the Full Plan
+
+**Goal:** One final checkpoint before building
+
+**Present everything:**
+
+> **Purpose:** [from Phase 1]
+>
+> **Layout:**
+> [diagram from Phase 4]
+>
+> **Components to build (N):**
+> - [name] (leaf/composite) — [one-line description]
+> - ...
+>
+> **Reusing (N):**
+> - [name] — already exists
+>
+> **State flow:**
+> [diagram from Phase 6]
+>
+> **Build plan:**
+> - Wave 1: [leaf components] — parallel
+> - Wave 2: [composites] — parallel
+> - Wave 3: page assembly
+>
+> Ready to build?
+
+**Get user confirmation.** This is the last checkpoint before parallel build.
+
+---
+
+## Phase 8: Build Components in Parallel
 
 **Goal:** Dispatch one agent per component — all leaf components simultaneously, then composites, then page
 
@@ -267,7 +315,7 @@ The page agent:
 
 ---
 
-## Phase 5: Polish Pass
+## Phase 9: Polish Pass
 
 **Goal:** Review everything just built against ui-craft
 
@@ -295,7 +343,7 @@ The page agent:
 
 ---
 
-## Phase 6: Verify and Report
+## Phase 10: Verify and Report
 
 **Goal:** Make sure it runs
 
