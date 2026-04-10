@@ -375,9 +375,9 @@ The page agent:
 
 3. **Suggest next steps:**
    > "Run your dev server to preview. Then:
-   > - `/chisel trace` another page
-   > - `/chisel trim` to tweak the design system
-   > - `/chisel check` to audit everything"
+   > - `/chisel carve` another page
+   > - `/chisel hone` to tweak the design system
+   > - `/chisel inspect` to audit everything"
 
 ---
 
@@ -385,7 +385,7 @@ The page agent:
 
 | Situation | Default Decision |
 |-----------|------------------|
-| Component exists but doesn't use tokens | Reuse it — `/chisel check` will catch violations later |
+| Component exists but doesn't use tokens | Reuse it — `/chisel inspect` will catch violations later |
 | Component naming | Follow codebase conventions (PascalCase React, kebab-case Vue) |
 | File location | Follow existing directory structure |
 | Layout approach | CSS Grid for 2D, Flexbox for 1D — never float |

@@ -19,7 +19,7 @@ Shape a design system from scratch. Detect context, establish aesthetic directio
 
 1. **Check for existing system:**
    - Look for `docs/design/system.md`
-   - If it exists: "Design system already exists. Use `/chisel trim` to tweak it or `/chisel lay` to regenerate the showcase."
+   - If it exists: "Design system already exists. Use `/chisel hone` to tweak it or `/chisel lay` to regenerate the showcase."
    - STOP — don't overwrite an existing system without explicit confirmation
 
 2. **Load project context:**
@@ -395,7 +395,7 @@ A single self-contained HTML file that:
 4. **When user approves ("looks good", "let's go", "ship it"):**
    - Commit all design files: `feat[design]: initialize design system`
    - Present summary of tokens and components
-   - Remind: "Use `/chisel trim` to tweak later, `/chisel check` to audit code against the system."
+   - Remind: "Use `/chisel hone` to tweak later, `/chisel inspect` to audit code against the system."
 
 ---
 

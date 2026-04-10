@@ -1,7 +1,7 @@
 {
   "name": "chisel",
   "version": "1.0.0",
-  "description": "Design system studio for frontend interfaces. Cut the design, trace it onto pages, trim the edges, check the work.",
+  "description": "Design system studio for frontend interfaces. Cut the design, carve it into pages, hone the edges, inspect the work.",
   "commands": [
     {
       "name": "cut",
@@ -10,9 +10,9 @@
       "argument_hint": "Optional: what you're building (e.g. \"admin dashboard\", \"analytics app\")"
     },
     {
-      "name": "trace",
-      "description": "Trace the design — build frontend pages using the design system",
-      "file": "commands/trace.md",
+      "name": "carve",
+      "description": "Carve the pages — build frontend pages using the design system",
+      "file": "commands/carve.md",
       "argument_hint": "What to build (e.g. \"dashboard with sidebar\", \"settings page\", \"login form\")"
     },
     {
@@ -21,15 +21,15 @@
       "file": "commands/lay.md"
     },
     {
-      "name": "trim",
-      "description": "Trim the edges — tweak tokens, preview, propagate",
-      "file": "commands/trim.md",
+      "name": "hone",
+      "description": "Hone the edges — tweak tokens, preview, propagate",
+      "file": "commands/hone.md",
       "argument_hint": "What to change (e.g. \"warmer palette\", \"rounder buttons\", \"smaller text\")"
     },
     {
-      "name": "check",
-      "description": "Check the work — audit code against the design system",
-      "file": "commands/check.md"
+      "name": "inspect",
+      "description": "Inspect the work — audit code against the design system",
+      "file": "commands/inspect.md"
     }
   ],
   "agents": [

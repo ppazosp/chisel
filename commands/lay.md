@@ -100,4 +100,4 @@ A single self-contained HTML file:
    > "Showcase regenerated with N components. Open in your browser to review."
 
 3. If new components were detected from codebase but not in system.md:
-   > "Found N new components in codebase not in system.md: [list]. Added to showcase. Run `/chisel trim` to define their token patterns."
+   > "Found N new components in codebase not in system.md: [list]. Added to showcase. Run `/chisel hone` to define their token patterns."
