@@ -1,6 +1,6 @@
 {
-  "name": "chisel",
-  "description": "Design system studio for frontend interfaces. Shape direction, carve tokens, exhibit components, inspect consistency.",
+  "name": "stencil",
+  "description": "Design system stencil for frontend interfaces. Cut the pattern, lay it out, trim the edges, check the work.",
   "author": {
     "name": "ppazosp"
   }

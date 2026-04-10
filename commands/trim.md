@@ -18,7 +18,7 @@ Change design tokens, preview the impact in the showcase, and propagate approved
 **Actions:**
 
 1. **Check for `docs/design/system.md`:**
-   - If missing: STOP — "No design system found. Run `/chisel shape` first."
+   - If missing: STOP — "No design system found. Run `/stencil cut` first."
 
 2. **Read `docs/design/system.md`** fully — all tokens, direction, component patterns
 
@@ -74,7 +74,7 @@ Change design tokens, preview the impact in the showcase, and propagate approved
    - Rebuild the full CSS file from updated system.md
    - Ensure light/dark mode values are consistent
 
-3. **If Tailwind is detected and config was extended during `/chisel shape`:**
+3. **If Tailwind is detected and config was extended during `/stencil cut`:**
    - Check if any NEW tokens were added that need Tailwind mappings
    - Update tailwind config if needed (existing var references don't need changes — they resolve dynamically)
 

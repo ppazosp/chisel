@@ -15,7 +15,7 @@ Scan all frontend code for design system violations. Report issues, offer auto-f
 **Actions:**
 
 1. **Check for `docs/design/system.md`:**
-   - If missing: STOP — "No design system found. Run `/chisel shape` first."
+   - If missing: STOP — "No design system found. Run `/stencil cut` first."
 
 2. **Read `docs/design/system.md`** fully — all tokens and component patterns
 

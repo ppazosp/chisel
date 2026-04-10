@@ -1,29 +1,29 @@
 {
-  "name": "chisel",
+  "name": "stencil",
   "version": "1.0.0",
-  "description": "Design system studio for frontend interfaces. Shape direction, carve tokens, exhibit components, inspect consistency.",
+  "description": "Design system stencil for frontend interfaces. Cut the pattern, lay it out, trim the edges, check the work.",
   "commands": [
     {
-      "name": "shape",
-      "description": "Start a new design system — direction, tokens, component showcase",
-      "file": "commands/shape.md",
+      "name": "cut",
+      "description": "Cut a new stencil — direction, tokens, component showcase",
+      "file": "commands/cut.md",
       "argument_hint": "Optional: what you're building (e.g. \"admin dashboard\", \"analytics app\")"
     },
     {
-      "name": "exhibit",
-      "description": "Regenerate the component showcase from current design system",
-      "file": "commands/exhibit.md"
+      "name": "lay",
+      "description": "Lay out the stencil — regenerate component showcase",
+      "file": "commands/lay.md"
     },
     {
-      "name": "carve",
-      "description": "Tweak design tokens — preview in showcase, then propagate",
-      "file": "commands/carve.md",
+      "name": "trim",
+      "description": "Trim the edges — tweak tokens, preview, propagate",
+      "file": "commands/trim.md",
       "argument_hint": "What to change (e.g. \"warmer palette\", \"rounder buttons\", \"smaller text\")"
     },
     {
-      "name": "inspect",
-      "description": "Audit all frontend code against the design system",
-      "file": "commands/inspect.md"
+      "name": "check",
+      "description": "Hold the stencil against the work — audit code against the design system",
+      "file": "commands/check.md"
     }
   ],
   "agents": [
