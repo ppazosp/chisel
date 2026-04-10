@@ -52,7 +52,15 @@ Shape a design system from scratch. Detect context, establish aesthetic directio
 
 2. **If "surprise me":** pick a direction that fits the project type. Dashboard → industrial or minimal. Consumer app → playful or bold. Internal tool → minimal or industrial.
 
-3. **If Stitch MCP is available, offer it:**
+3. **Research the vibe (when NOT using Stitch):**
+   - Use WebSearch to research the user's chosen aesthetic direction
+   - Search for: `"<vibe> UI design"`, `"<vibe> design system examples"`, `"<vibe> web design inspiration"`
+   - Look for: color palettes, typography pairings, spacing patterns, radius conventions, shadow styles, real-world examples
+   - Extract concrete design decisions from the research (specific fonts, color ranges, radius values, shadow approaches)
+   - Use these findings to inform token generation in Phase 3 — don't guess, base tokens on real examples of the style
+   - If the vibe is a specific brand or product ("like Linear", "like Notion", "like Nothing Phone"), research that product's design language specifically
+
+4. **If Stitch MCP is available, offer it:**
    > "Want me to brainstorm layouts with Stitch first? It can generate screen mockups to explore before we commit to tokens."
 
    If user says yes:
@@ -61,7 +69,7 @@ Shape a design system from scratch. Detect context, establish aesthetic directio
    - Extract visual direction from the chosen variant
    - Continue to Phase 2 with that direction
 
-4. **Confirm direction with the user before proceeding.**
+5. **Confirm direction with the user before proceeding.** Share what you found from research — key references, font pairings, color ranges — so the user knows what's informing the tokens.
 
 ---
 
