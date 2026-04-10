@@ -40,6 +40,18 @@ Change design tokens, preview the impact in the showcase, and propagate approved
    | **Stylistic** | "make it look like Linear", "brutalist", "more playful", "warmer" | Research first, then map to tokens |
 
 2. **If stylistic — research before changing tokens:**
+
+   **Check for Stitch MCP first:**
+   - Use `ToolSearch` with query `"stitch"` to check if Stitch MCP tools are available
+   - If available, offer: "Want me to generate mockups with the new direction in Stitch before updating tokens?"
+   - If user says yes:
+     - Load Stitch tool schemas via ToolSearch
+     - Use `mcp__stitch__generate_screen_from_text` to generate 1-2 variants applying the new style to the existing layout
+     - Present to user, extract concrete token values from the chosen variant
+     - Skip online research — Stitch output replaces it
+   - If user says no, or Stitch not available → fall back to online research
+
+   **Online research (when not using Stitch):**
    - Use WebSearch to research what the user means concretely
    - Search for: `"<style> UI design tokens"`, `"<style> color palette"`, `"<style> design system"`
    - If it references a product ("like Linear", "like Notion"): research that product's specific design language — colors, fonts, radius, shadows
